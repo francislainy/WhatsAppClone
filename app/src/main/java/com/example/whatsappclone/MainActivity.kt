@@ -1,5 +1,7 @@
 package com.example.whatsappclone
 
+import android.content.Context
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.constraint.Placeholder
@@ -73,5 +75,9 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    companion object {
+        fun newIntent(context: Context) = Intent(context, MainActivity::class.java)
     }
 }
