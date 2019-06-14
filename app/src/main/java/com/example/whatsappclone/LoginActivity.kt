@@ -5,6 +5,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 
 class LoginActivity : AppCompatActivity() {
 
@@ -13,7 +14,11 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
     }
 
-    fun onClick(view: View) {
+    fun onLogin(view: View) {
+        Toast.makeText(this, "Login clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    fun onSignup(view: View) {
         startActivity(SignUpActivity.newIntent(this))
         finish()
     }
