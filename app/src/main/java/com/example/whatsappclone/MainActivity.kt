@@ -10,12 +10,14 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.view.*
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
 
 class MainActivity : AppCompatActivity() {
 
     private var sectionPagerAdapter: SectionPagerAdapter? = null
+    private val firebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,14 +38,19 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val id = item?.itemId
-
-        if (id == R.id.action_settings) {
-            return true
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_logout -> {
+                onLogout()
+            }
         }
-
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun onLogout() {
+        firebaseAuth.signOut()
+        startActivity(LoginActivity.newIntent(this))
+        finish()
     }
 
     inner class SectionPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
