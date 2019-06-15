@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_login.view.*
 class LoginActivity : AppCompatActivity() {
 
     private val firebaseAuth = FirebaseAuth.getInstance()
-    private val firebaseAuthListener = FirebaseAuth.AuthStateListener {
+    private val firebaseAuthListenener = FirebaseAuth.AuthStateListener {
         val user = firebaseAuth.currentUser?.uid
         if (user != null) {
             startActivity(MainActivity.newIntent(this))
@@ -50,12 +50,12 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        firebaseAuth.addAuthStateListener(firebaseAuthListener)
+        firebaseAuth.addAuthStateListener(firebaseAuthListenener)
     }
 
     override fun onStop() {
         super.onStop()
-        firebaseAuth.removeAuthStateListener(firebaseAuthListener)
+        firebaseAuth.removeAuthStateListener(firebaseAuthListenener)
     }
 
     fun onLogin(view: View) {

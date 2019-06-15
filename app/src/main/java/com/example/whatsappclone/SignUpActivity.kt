@@ -13,8 +13,13 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up)
     }
 
-    fun onClick(view: View) {
+    fun onSignup(view: View) {
         startActivity(MainActivity.newIntent(this))
+        finish()
+    }
+
+    fun onLogin(view: View) {
+        startActivity(LoginActivity.newIntent(this))
         finish()
     }
 
