@@ -87,14 +87,17 @@ class SignUpActivity : AppCompatActivity() {
                     if (!task.isSuccessful) {
                         progressLayout.visibility = View.GONE
                         Toast.makeText(this@SignUpActivity, "Signup error: ${task.exception?.localizedMessage}", Toast.LENGTH_SHORT).show()
+                        progressLayout.visibility = View.GONE
                     } else if (firebaseAuth.uid != null) {
                         val email: String = emailET.text.toString()
-                        val phone: String = phoneET.text.toString()
                         val name: String = nameET.text.toString()
-                        val user = User(email, phone, name, "Hello, I'm new", "", "")
+                        val phone: String = phoneET.text.toString()
+                        val user = User(email, name, phone, "", "Hello, I'm new", "")
                         firebaseDB.collection(DATA_USERS).document(firebaseAuth.uid!!).set(user)
+
+                        startActivity(MainActivity.newIntent(this))
+                        finish()
                     }
-                    progressLayout.visibility = View.GONE
                 }
                 .addOnFailureListener { e ->
                     progressLayout.visibility = View.GONE
@@ -102,9 +105,6 @@ class SignUpActivity : AppCompatActivity() {
                 }
 
         }
-
-        startActivity(MainActivity.newIntent(this))
-        finish()
     }
 
     fun onLogin(view: View) {
