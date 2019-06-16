@@ -21,7 +21,7 @@
 
             <ImageView
                 android:layout_marginBottom="@dimen/grid_2"
-                android:id="@+id/photoId"
+                android:id="@+id/photoIV"
                 android:layout_width="@dimen/standard_width"
                 android:layout_height="@dimen/standard_width"
                 android:src="@drawable/default_user" />
@@ -30,7 +30,7 @@
                 android:id="@+id/nameTil"
                 android:layout_width="@dimen/standard_width"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/photoId"
+                android:layout_below="@id/photoIV"
                 android:paddingBottom="@dimen/grid_3">
 
                 <android.support.design.widget.TextInputEditText
