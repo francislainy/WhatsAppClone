@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_profile.*
 class ProfileActivity : AppCompatActivity() {
 
     private val firebaseDB = FirebaseFirestore.getInstance()
+    private val firebaseAuth = FirebaseAuth.getInstance()
     private val userId = FirebaseAuth.getInstance().currentUser?.uid
     private var imageUrl: String? = null
     private val firebaseStorage = FirebaseStorage.getInstance().reference
@@ -95,9 +96,16 @@ class ProfileActivity : AppCompatActivity() {
             .setTitle("Delete account")
             .setMessage("This will delete your profile. Are you sure")
             .setPositiveButton("Yes") { dialog, which ->
-                Toast.makeText(this, "Profile deleted", Toast.LENGTH_SHORT).show()
                 firebaseDB.collection(DATA_USERS).document(userId!!).delete()
-                finish()
+                firebaseStorage.child(DATA_IMAGES).child(userId).delete()
+                firebaseAuth.currentUser?.delete()
+                    ?.addOnSuccessListener {
+                        Toast.makeText(this, "Profile deleted", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
+                    ?.addOnFailureListener {
+                        finish()
+                    }
             }
             .setNegativeButton("No") { dialog, which ->
                 progressLayout.visibility = View.GONE
