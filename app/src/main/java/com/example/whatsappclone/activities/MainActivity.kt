@@ -40,6 +40,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.action_profile -> {
+                onProfile()
+            }
             R.id.action_logout -> {
                 onLogout()
             }
@@ -51,6 +54,10 @@ class MainActivity : AppCompatActivity() {
         firebaseAuth.signOut()
         startActivity(LoginActivity.newIntent(this))
         finish()
+    }
+
+    private fun onProfile() {
+        startActivity(ProfileActivity.newIntent(this))
     }
 
     inner class SectionPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activities.SignUpActivity">
 
-
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -112,7 +111,6 @@
 
             </android.support.design.widget.TextInputLayout>
 
-
             <Button
                 android:id="@+id/buttonSignup"
                 style="@style/standardButton"
@@ -126,10 +124,9 @@
                 android:layout_marginEnd="@dimen/grid_3"
                 android:layout_marginRight="@dimen/grid_3"
                 android:onClick="onSignup"
-                android:text="@string/btn_signup" />
+                android:text="@string/button_signup" />
 
             <TextView
-
                 android:id="@+id/alreadyHaveAccountTv"
                 style="@style/linkText"
                 android:layout_width="wrap_content"
